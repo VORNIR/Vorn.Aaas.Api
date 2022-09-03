@@ -8,6 +8,7 @@
 		<Version>0.1.0</Version>
 		<Company>Vorn</Company>
 		<PackageDescription>Vorn Aaas for Api</PackageDescription>
+		<RepositoryUrl>https://github.com/VORNIR/Vorn.Aaas.Api</RepositoryUrl>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
