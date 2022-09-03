@@ -1,0 +1,19 @@
+name: Pack
+on:
+    release:
+      types: [published]
+    workflow_dispatch:
+jobs:
+    pack-on-release:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout
+            uses: actions/checkout@v2  
+          - name: Add Source
+            run: dotnet nuget add source https://nuget.pkg.github.com/VORNIR/index.json -n "Vorn" --username mobinseven --password  ${{ secrets.GH_PAT }} --store-password-in-clear-text
+          - name: Pack
+            working-directory: ./Vorn.Aaas.Api
+            run: dotnet pack --configuration Release  --output .
+          - name: Push
+            working-directory: ./Vorn.Aaas.Api
+            run: dotnet nuget push Vorn.Aaas.Api.*.nupkg --source https://nuget.pkg.github.com/VORNIR/index.json --api-key ${{ secrets.GH_PAT }}
